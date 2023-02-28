@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registation Form</title>
+</head>
+<body>
+    
+        <form onsubmit="saveToLocalStorage(event)">
+            <label>Username:</label><br>
+            <input type="text" name = "username" required>
+            <br>
+            <label>Email:</label><br>
+            <input type="email" name="emailId" required>
+            <br>
+            <label>Contact Number:</label><br>
+            <input type="tel" name="phonenumber">
+            <br>
+            <br>
+            <button>submit</button>
+        </form>
+
+    <script>
+          function saveToLocalStorage(event){
+            event.preventDefault();
+            var name = event.target.username.value;
+            var email= event.target.emailId.value;
+            var phonenumber = event.target.phonenumber.value;
+            localStorage.setItem('name',name);
+            localStorage.setItem('email',email);
+            localStorage.setItem('number',phonenumber);
+
+          }
+    </script>
+</body>
+</html>
+
