@@ -26,31 +26,34 @@
     <h2 class="title">Add Items</h2>
     <form id="addForm" class="form-inline mb-3">
       <input type="text" class="form-control mr-2" id="item">
+      <input type="text" class="form-control mr-2" id="descriptionbox">
       <input type="submit" class="btn btn-dark" value="Submit">
     </form>
     <h2 class="title">Items</h2>
     <ul id="items" class="list-group">
-      <li class="list-group-item">Item 1<button class="btn btn-success btn-sm float-right delete">Edit</button>
-        <button class="btn btn-danger btn-sm float-right delete">X</button>
-      </li>
-      <li class="list-group-item">Item  2<button class="btn btn-success btn-sm float-right delete">Edit</button>
-        <button class="btn btn-danger btn-sm float-right delete">X</button></li>
-      <li class="list-group-item">Item 3<button class="btn btn-success btn-sm float-right delete">Edit</button>
-         <button class="btn btn-danger btn-sm float-right delete">X</button></li>
-      <li class="list-group-item">Item 4 <button class="btn btn-success btn-sm float-right delete">Edit</button>
-         <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+      <li class="list-group-item">Item 1<button class="btn btn-danger btn-sm float-right delete">X</button></li>
+      <li class="list-group-item">Item  2<button class="btn btn-danger btn-sm float-right delete">X</button></li> 
+      <li class="list-group-item">Item 3<button class="btn btn-danger btn-sm float-right delete">x</button></li>
+      <li class="list-group-item">Item 4 <button class="btn btn-danger btn-sm float-right delete">x</button></li>
     </ul>
    </div>
   </div>
-<!--script src="dom8.js"></script -->
+<!--script src="dom9.js"></script -->
 <script>
-var form = document.getElementById('addForm');
+  var form = document.getElementById('addForm');
 var itemlist = document.getElementById('items');
+var filter = document.getElementById('filter')
+
+
 // form submit event
 form.addEventListener('submit',addItem);
 
 // delete event
 itemlist.addEventListener('click',removeItem)
+
+// filter event
+filter.addEventListener('keyup', filterItems);
+
 
 //Add item
 function addItem(e){
@@ -58,6 +61,8 @@ function addItem(e){
     
     //get input value
     var newitem = document.getElementById('item').value;
+    var description= document.getElementById('descriptionbox').value;
+
 
     //create new li item
     var li = document.createElement('li');
@@ -68,6 +73,8 @@ function addItem(e){
     // add text node with input value
     
     li.appendChild(document.createTextNode(newitem));
+    var descriptionNode = document.createTextNode(description)
+    li.appendChild(descriptionNode)
 
     // create delete button
     var deleteBtn = document.createElement('button')
@@ -77,7 +84,7 @@ function addItem(e){
 
     //append text node
     deleteBtn.appendChild(document.createTextNode('X'));
-
+    li.appendChild(deleteBtn)
     // add edit button
     var  editBtn = document.createElement('button');
     
@@ -86,10 +93,9 @@ function addItem(e){
   //add button to li
   
     li.appendChild(editBtn);
-    li.appendChild(deleteBtn)
+    
     //add li to item list
   itemlist.appendChild(li);
- 
 }
 function removeItem(e){
     if(e.target.classList.contains('delete')){
@@ -99,7 +105,7 @@ function removeItem(e){
         }
     }
 }
-/*var list = document.getElementsByClassName('list-group-item');
+var list = document.getElementsByClassName('list-group-item');
   for(var i=0;i<list.length;i++)
   {
   var button=document.createElement('button');
@@ -107,8 +113,25 @@ function removeItem(e){
   button.className=' btn btn-success btn-sm float-right';
   list[i].appendChild(button);
   }
-  */
-
+// filter item
+function filterItems(e){
+    // convert text to lowercase
+    var text = e.target.value.toLowerCase();
+    // get lis
+    var items = itemlist.getElementsByTagName('li');
+   // convert to an array
+   Array.from(items).forEach(function(item) {
+    var itemname = item.firstChild.textContent;
+    var description = item.childNodes[1].textContent;
+    if(itemname.toLowerCase().indexOf(text)!= -1 || description.toLowerCase().indexOf(text)!= -1){
+        item.style.display='block'
+    }else{
+        item.style.display='none'
+    }
+    
+  }
+   )};
+    
 </script>
 </body>
-</html>*
+</html>
