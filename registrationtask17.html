@@ -37,10 +37,11 @@
                 email,
                 phonenumber
             }
-            axios.post("https://crudcrud.com/api/5b74d63d82e449e7a99fbcb1e2224940/StudentData",obj)
+           // axios.post("https://crudcrud.com/api/5b74d63d82e449e7a99fbcb1e2224940/StudentData",obj)
+           axios.post("https://crudcrud.com/api/79752eff0f7c4f1c9f2de3d66adb6cd3/StudentData",obj)
             .then((response)=>{
                 showNewUserOnScreen(response.data)
-               // console.log(response)
+               console.log(response)
             })
            .catch((error)=>{
              document.body.innerHTML = document.body.innerHTML + "<h4>Somthing went wrong</h4>"
@@ -49,6 +50,19 @@
             //localStorage.setItem(obj.email,JSON.stringify(obj));
             //showUserOnScreen(obj)
           }
+           window.addEventListener("DOMContentLoaded",()=>{
+              axios.get("https://crudcrud.com/api/79752eff0f7c4f1c9f2de3d66adb6cd3/StudentData")
+              .then((response)=>{
+                for(var i=0;i<response.data.length;i++){
+                  showNewUserOnScreen(response.data[i])
+
+                }
+                console.log(response)
+              })
+              .catch((error)=>{
+               console.log(error)
+                })
+            })
           function showNewUserOnScreen(obj){
                 var parentElem = document.getElementById('listofitem');
                 var childElem = document.createElement('li');
