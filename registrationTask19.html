@@ -8,7 +8,7 @@
 </head>
 <body>
     
-        <form onsubmit="saveToLocalStorage(event)">
+        <form onsubmit="saveToCrudCrud(event)">
             <label>Username:</label><br>
             <input type="text" name = "username" id="username#" required>
             <br>
@@ -24,14 +24,11 @@
       <ul id="listofitem"></ul>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-          function saveToLocalStorage(event){
+          function saveToCrudCrud(event){
             event.preventDefault();
             var name = event.target.username.value;
             var email= event.target.emailId.value;
             var phonenumber = event.target.phonenumber.value;
-            //localStorage.setItem('name',name);
-            //localStorage.setItem('email',email);
-            //localStorage.setItem('number',phonenumber);
             var obj = {
                 name,
                 email,
