@@ -14,7 +14,7 @@
 //var lastitem = document.querySelector('.list-group-item:last-child');
 //lastitem.style.color = 'blue'
 
-//var seconditem = document.querySelector('.list-group-item:nth-child(2)');
+var seconditem = document.querySelector('.list-group-item:nth-child(2)');
 seconditem.style.backgroundColor = 'green'
 
 var thirditem = document.querySelector('.list-group-item:nth-child(3)');
